@@ -2,10 +2,23 @@
 require_once "AdminService.class.php";
 $name = $_POST['name'];
 $passwd = $_POST['passwd'];
+
+
+
+if(empty($_POST['keep'])){
+    if(!empty($_COOKIE['name'])){
+        setcookie("name",$name,time()-200);
+    }
+}else{
+    setcookie("name",$name,time()+7*24*3600);
+}
+
 $adminService=new AdminService();
 $b=$adminService->checkAdmin($name,$passwd);
 if ($b!="") {
-    header("Location:empManage.php");
+    session_start();
+    $_SESSION['loginuser']=$name;
+    header("Location:empManage.php?name=$name");
     exit();
 } else {
     header("Location:login.php?error=1");

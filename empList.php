@@ -13,6 +13,8 @@
 <?php
 require_once "empService.class.php";
 require_once "paging.class.php";
+require_once "common.php";
+checkUserValidate();
 $empService = new empService();
 $paging = new paging();
 
