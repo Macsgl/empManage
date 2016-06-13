@@ -11,6 +11,8 @@
     <table>
         <tr><td>用户名：</td><td><input type="text" name="name" value="<?php echo getCookieVal("name")?>"/></td></tr>
         <tr><td>密 &nbsp;码</td><td><input type="password" name="passwd" /></td></tr>
+        <tr><td>验证码</td><td><input type="text" name="checkCode"/>
+            <img src="checkCode.php" onclick="this.src='checkCode.php?aa='+Math.random()"/></td></tr>
         <tr><td colspan="2">7天内直接登录<input type="checkbox" name="keep" value="yes" /></td> </tr>
         <tr>
             <td><input type="submit" value="用户登录" /></td>
@@ -24,6 +26,8 @@
         if($error==1)
         {
             echo "用户名或密码错误";
+        }else if($error==2){
+            echo "验证码错误";
         }
     }
 ?>

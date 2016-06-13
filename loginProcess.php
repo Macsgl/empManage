@@ -2,8 +2,13 @@
 require_once "AdminService.class.php";
 $name = $_POST['name'];
 $passwd = $_POST['passwd'];
+$checkCode=$_POST['checkCode'];
 
-
+session_start();
+if($checkCode!=$_SESSION['myCheckCode']){
+    header("Location:login.php?error=2");
+    exit();
+}
 
 if(empty($_POST['keep'])){
     if(!empty($_COOKIE['name'])){
@@ -24,4 +29,7 @@ if ($b!="") {
     header("Location:login.php?error=1");
     exit();
 }
+
+
+
 ?>
